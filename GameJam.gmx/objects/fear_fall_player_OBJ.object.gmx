@@ -11,6 +11,34 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
+        <id>541</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sprite_set</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>5</kind>
+            <sprite>player_SPR</sprite>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>.75</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -31,35 +59,9 @@ jumpStep = 10;
 jumpHeightCurrent = 0;
 blockCheck = 0;
 yCoordOffSet= 0 ;
+player_gravity = 0;
+jumpState = 0;
 </string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>541</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_sprite_set</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>5</kind>
-            <sprite>-100</sprite>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>.75</string>
           </argument>
         </arguments>
       </action>
@@ -67,30 +69,6 @@ yCoordOffSet= 0 ;
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>101</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_move</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>010000000</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>5</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -105,78 +83,38 @@ yCoordOffSet= 0 ;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.swayXState == 0)
-{
-    self.x -= (2* wall_run_controller_OBJ.swayStepX);
-}
-else if (wall_run_controller_OBJ.swayXState == 2)
-{
-    self.x += (2* wall_run_controller_OBJ.swayStepX);
-}
-if (wall_run_controller_OBJ.swayYState == 0)
-{
-    self.y -= (2* wall_run_controller_OBJ.swayStepY);
-}
-else if (wall_run_controller_OBJ.swayYState == 2)
-{
-    self.y += (2* wall_run_controller_OBJ.swayStepY);
-}
+            <string>
 
-if (self.x &lt; -32)
-{
-    self.x += 2208;
-}
-
-/*if (jumpHeightCurrent &gt;= 0)
-{
-    self.y -= (jumpStep * jumpHeightCurrent / jumpHeight );
-    jumpHeightCurrent -= jumpStep;
-}*/
-
-if !((place_meeting(x, y + 1, wall_run_floor )) || (place_meeting(x, y + 1, wall_run_platform_OBJ )) || (place_meeting(x, y + 1, wall_run_genric_platform_obj)  ) )
+if !(place_meeting(x, y + 16, fear_fall_floor_OBJ )) 
    {
-   gravity += 1;
+   if (player_gravity &lt; fear_fall_controller_OBJ.playerGravityMax)
+   {
+        player_gravity += 1;
+   }
    }
 else
    {
-   if(gravity != 0)
+   if(player_gravity != 0)
    {
         audio_play_sound(wall_run_thud_dry_juskiddink_free_sounds_org_SND, 0, false);   
    }
-   gravity = 0;
+   player_gravity = 0;
    jumpState = 0;
    }
-   
-if (wall_run_controller_OBJ.playerStunLock &gt; 0)
+if (y &lt; 1084 - player_gravity)
 {
- x -= 2;
- x -= wall_run_controller_OBJ.throttle/2;
+    if !(place_meeting(x, y+player_gravity, fear_fall_floor_OBJ ))
+        {
+        y += player_gravity;
+        }
+    
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="game_controller_OBJ">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>self.y -= 2;
-//jumpState = 0;
-//gravity = 0;
+if (y &gt; 1052 )
+{
+    y -= fear_fall_controller_OBJ.playerGravityMax/4;
+    player_gravity -= 2;
+}
+
 </string>
           </argument>
         </arguments>
@@ -199,7 +137,7 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.playerStunLock &lt;= 0)
+            <string>if (fear_fall_controller_OBJ.playerStunLock &lt;= 0)
 {
     
     if (gravity &lt; 0)
@@ -209,7 +147,10 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
     }
     if ( place_empty(x, y + 10 ))
     {
+    if !(place_meeting(x, y+4, fear_fall_floor_OBJ ))
+        {
     y +=4;
+    }
     }
 }
 </string>
@@ -234,11 +175,15 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.playerStunLock &lt;= 0)
+            <string>if (fear_fall_controller_OBJ.playerStunLock &lt;= 0)
 {
-    if (x &lt; 1152)
+    image_xscale = 1;
+    if (x &lt; 1024 + 256 - 10 - 35)
     {
-        x += 5;
+    if !(place_meeting(x+10, y, fear_fall_floor_OBJ ))
+        {
+    x += 10;
+    }
     }
 }
 </string>
@@ -263,9 +208,47 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.playerStunLock &lt;= 0)
+            <string>if (fear_fall_controller_OBJ.playerStunLock &lt;= 0)
 {
-    x -= 15;
+    image_xscale = -1;
+    if (x &gt; 256 + 10 + 35)
+    {
+    if !(place_meeting(x-10, y, fear_fall_floor_OBJ ))
+        {
+    x -= 10;
+    }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="40">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (y &lt; 512) 
+{
+    y = 1160;
+    x = 712;
+    offset= 44;
+    instance_create(x - offset, y + 32, fear_fall_floor_OBJ);
+    instance_create(x - offset + 32, y + 32, fear_fall_floor_OBJ);
+    instance_create(x - offset + 64, y + 32, fear_fall_floor_OBJ);
     
 }
 </string>
@@ -290,7 +273,7 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>wall_run_controller_OBJ.playerStunLock</string>
+            <string>fear_fall_controller_OBJ.playerStunLock</string>
           </argument>
           <argument>
             <kind>0</kind>
@@ -326,18 +309,18 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alpha = wall_run_controller_OBJ.playerStunLock mod wall_run_controller_OBJ.flashingControlFrames;
-if (alpha &gt;= wall_run_controller_OBJ.flashingControlFrames/2)
+            <string>alpha = fear_fall_controller_OBJ.playerStunLock mod fear_fall_controller_OBJ.flashingControlFrames;
+if (alpha &gt;= fear_fall_controller_OBJ.flashingControlFrames/2)
 {
-    alpha = wall_run_controller_OBJ.flashingControlFrames-1 - alpha;
+    alpha = fear_fall_controller_OBJ.flashingControlFrames-1 - alpha;
 }
-alpha /= wall_run_controller_OBJ.flashingControlFrames;
+alpha /= fear_fall_controller_OBJ.flashingControlFrames;
 alpha *=2;
 alpha += 0.5
 </string>
@@ -480,15 +463,17 @@ alpha += 0.5
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.playerStunLock &lt;= 0)
+            <string>if (fear_fall_controller_OBJ.playerStunLock &lt;= 0)
 {
     if (jumpState &lt; 4)
     {
         audio_play_sound (wall_run_8_bit_jump_the_dweeb_man_free_sounds_org_SND, 0, false);
-        jumpHeightCurrent = jumpHeight;
         jumpState++;
-        gravity = -24;
-        y -= 8;
+        if !(place_meeting(x, y-(fear_fall_controller_OBJ.playerJumpArc * 2), fear_fall_floor_OBJ ))
+        {
+        y -= (fear_fall_controller_OBJ.playerJumpArc * 2);
+        }
+        player_gravity = -fear_fall_controller_OBJ.playerJumpArc;        
     }
 }
 </string>
@@ -513,15 +498,17 @@ alpha += 0.5
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (wall_run_controller_OBJ.playerStunLock &lt;= 0)
+            <string>if (fear_fall_controller_OBJ.playerStunLock &lt;= 0)
 {
     if (jumpState &lt; 4)
     {
         audio_play_sound (wall_run_8_bit_jump_the_dweeb_man_free_sounds_org_SND, 0, false);
-        jumpHeightCurrent = jumpHeight;
         jumpState++;
-        gravity = -24;
-        y -= 8;
+        if !(place_meeting(x, y-(fear_fall_controller_OBJ.playerJumpArc * 2), fear_fall_floor_OBJ ))
+        {
+        y -= (fear_fall_controller_OBJ.playerJumpArc * 2);
+        }
+        player_gravity = -fear_fall_controller_OBJ.playerJumpArc;        
     }
 }
 </string>

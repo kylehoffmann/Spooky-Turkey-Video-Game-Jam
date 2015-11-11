@@ -30,6 +30,7 @@
     <background>background\background0</background>
     <background>background\u_ded_BG</background>
     <background>background\wall_run_lake_BG</background>
+    <background>background\fear_fall_mountians_BG</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
@@ -43,11 +44,17 @@
     <object>objects\wall_run_wall_o_hands_OBJ</object>
     <object>objects\wall_run_genric_platform_obj</object>
     <object>objects\menu_skeletons_OBJ</object>
+    <object>objects\fear_fall_controller_OBJ</object>
+    <object>objects\fear_fall_floor_OBJ</object>
+    <object>objects\fear_fall_ghost_OBJ</object>
+    <object>objects\fear_fall_leaf_OBJ</object>
+    <object>objects\fear_fall_player_OBJ</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Game_Select_ROOM</room>
     <room>rooms\Wall_Run_ROOM</room>
     <room>rooms\u_ded_ROOM</room>
+    <room>rooms\fear_fall_ROOM</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

@@ -26,11 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>globalvar humanScore, deathScore;
-global.playerScore = 0;
+global.humanScore = 0;
 global.deathScore = 0;
 humanScore = 0;
 deathScore = 0;
-optionsTotal = 2;
+optionsTotal = 3;
 menuSelect = 0;
 audio_stop_all();
 </string>
@@ -86,6 +86,14 @@ if ( menuSelect == 0 )
     draw_set_color( c_white );
 }
 draw_text_transformed( 128, setY, "Wall run", 2.5,2.5,0);
+setY += 64;
+
+draw_set_color( c_black );
+if ( menuSelect == 1 )
+{
+    draw_set_color( c_white );
+}
+draw_text_transformed( 128, setY, "Fear Fall", 2.5,2.5,0);
 setY += 64;
 
 draw_set_color( c_black );
@@ -179,6 +187,14 @@ if (menuSelect == -1)
 if(menuSelect == 0)
 {
     room_goto( Wall_Run_ROOM );
+    audio_stop_all();
+    sound = audio_play_sound(wall_run_intro_classic_adventure_meme_kevin_mecloud_SND,0, true);
+    audio_sound_gain(sound, 40, 0);
+    audio_play_sound(wall_run_8_bit_jump_the_dweeb_man_free_sounds_org_SND, 0, false);
+}
+if(menuSelect == 1)
+{
+    room_goto( fear_fall_ROOM );
     audio_stop_all();
     sound = audio_play_sound(wall_run_intro_classic_adventure_meme_kevin_mecloud_SND,0, true);
     audio_sound_gain(sound, 40, 0);
