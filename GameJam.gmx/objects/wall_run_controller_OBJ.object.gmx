@@ -68,8 +68,9 @@ leafCycleCap = leafCycleCap mod (leafCycleMax + 1);
 playerStunLock = 0;
 leafStunLock = 60;
 booCoolDown = 0;
-booCoolDownWaitFrames = 30;
+booCoolDownWaitFrames = 60;
 flashingControlFrames = 30;
+spawnGhostChance = 10;
 </string>
           </argument>
         </arguments>
@@ -92,7 +93,12 @@ flashingControlFrames = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (joystick_check_button(1,1)) 
+            <string>if (global.humanScore + global.deathScore &gt;= 25)
+{
+    room_goto( u_ded_ROOM );
+}
+
+if (joystick_check_button(1,1)) 
 {
     swayAlteredStateX = round(random_range(swayMultiplierCyclesMinX, swayMultiplierCyclesMaxX));
     swayAlteredStateY = round(random_range(swayMultiplierCyclesMinY, swayMultiplierCyclesMaxY));  
@@ -295,7 +301,7 @@ if (spawnCycle == 0)
             while (spawnCount &gt; i)
             {
                 instance_create(2048 - swayX + 32 * i, 256 + 128 * spawnLevel - swayY, wall_run_genric_platform_obj);
-                if (round(random_range(0,20)) == 1)
+                if (round(random_range(0, spawnGhostChance)) == 1)
                 {
                     instance_create(2048 - swayX + 32 * i, 224 + 128 * spawnLevel - swayY , wall_run_ghost_OBJ);
                 }
@@ -340,7 +346,7 @@ if (booCoolDown &gt;0)
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>30</string>
           </argument>
           <argument>
             <kind>4</kind>

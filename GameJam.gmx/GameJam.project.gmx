@@ -24,7 +24,7 @@
     <sprite>sprites\wall_run_raft_1_SPR</sprite>
     <sprite>sprites\wall_run_raft_2_SPR</sprite>
     <sprite>sprites\wall_run_boo_jump_scare_SPR</sprite>
-    <sprite>sprites\menu_Skeletons_SPR</sprite>
+    <sprite>sprites\death_SPR</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -43,12 +43,14 @@
     <object>objects\wall_run_ghost_OBJ</object>
     <object>objects\wall_run_wall_o_hands_OBJ</object>
     <object>objects\wall_run_genric_platform_obj</object>
-    <object>objects\menu_skeletons_OBJ</object>
     <object>objects\fear_fall_controller_OBJ</object>
     <object>objects\fear_fall_floor_OBJ</object>
     <object>objects\fear_fall_ghost_OBJ</object>
     <object>objects\fear_fall_leaf_OBJ</object>
     <object>objects\fear_fall_player_OBJ</object>
+    <object>objects\final_Score</object>
+    <object>objects\title_sprite_OBJ</object>
+    <object>objects\end_sprite_OBJ</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\Game_Select_ROOM</room>

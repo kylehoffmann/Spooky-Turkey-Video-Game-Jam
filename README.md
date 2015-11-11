@@ -2,8 +2,9 @@
 
 My contribution to the Uvic GameDev Spooky Turkey Video Game Jam.
 
-Version 1.1
+Version 1.2
 
+-------------------------------------------------------------------
 
 Kyle Hoffmann - November 11/15
 
@@ -20,9 +21,12 @@ If the second player is using an x-box controller 'B' speeds up the stage. 'X' p
 
 In the first stage the second player can also increase the stage's sway by holding the 'A' key.
 
+-------------------------------------------------------------------
 
 Programming:
 Kyle Hoffmann (October - November / 2015)
+
+-------------------------------------------------------------------
 
 Music Credits:
 Female Scream Horror Sound - NeoPhyTe - SoundBible.com - October 18/15
@@ -43,10 +47,9 @@ kick thump.wav - dflee4 - www.freesound.org - October 18/15
 
 Nasty Glitchy Skream3.wav - dragline777 - www.freesound.org - October 18/15
 
+-------------------------------------------------------------------
 
 Art Credits: 
 Editing, JumpScare & Scrolling Mountains - Kyle Hoffmann - (October 16-18 / 2015)
 
 More Editing & Everything else - Salsa Graphics - (October 16-18 / 2015)
-
-Placeholder menu and kill screen - Edited By Kyle, Images from multiple sources on google images - October 16-18

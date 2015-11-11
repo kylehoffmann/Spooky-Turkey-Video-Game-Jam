@@ -47,7 +47,7 @@ spawnStageXStart = spawnStageXStartMin + floor(random_range(0, 1 + spawnStageXSt
 spawnGhostChance = 10;
 throttle = 0;
 booCoolDown = 0;
-booCoolDownWaitFrames = 30;
+booCoolDownWaitFrames = 60;
 
 leafCycleMax = 90;
 throttle = 0;
@@ -82,7 +82,12 @@ flashingControlFrames = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (joystick_check_button(1,2)) 
+            <string>if (global.humanScore + global.deathScore &gt;= 25)
+{
+    room_goto( u_ded_ROOM );
+}
+
+if (joystick_check_button(1,2)) 
 {
     throttle = 10; 
     fear_fall_player_OBJ.image_speed = 1.5; 
@@ -176,7 +181,7 @@ playerStunLock--;
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>30</string>
           </argument>
           <argument>
             <kind>4</kind>

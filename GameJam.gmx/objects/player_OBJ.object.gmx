@@ -11,32 +11,6 @@
     <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>jumpState = 1;
-jumpHeight = 1536;
-jumpStep = 10;
-jumpHeightCurrent = 0;
-blockCheck = 0;
-yCoordOffSet= 0 ;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>541</id>
         <kind>0</kind>
         <userelative>0</userelative>
@@ -60,6 +34,33 @@ yCoordOffSet= 0 ;
           <argument>
             <kind>0</kind>
             <string>.75</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>jumpState = 1;
+jumpHeight = 1536;
+jumpStep = 10;
+jumpHeightCurrent = 0;
+blockCheck = 0;
+yCoordOffSet= 0 ;
+bounce = 0;
+</string>
           </argument>
         </arguments>
       </action>
@@ -151,6 +152,12 @@ if (wall_run_controller_OBJ.playerStunLock &gt; 0)
 {
  x -= 2;
  x -= wall_run_controller_OBJ.throttle/2;
+}
+
+if (bounce&gt; 0)
+{
+    x += bounce;
+    bounce -=8;
 }
 </string>
           </argument>
